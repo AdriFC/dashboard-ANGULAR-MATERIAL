@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuario } from '../../../interfaces/usuario';
+import { UsuarioService } from '../../../services/usuario.service';
 
 
 
@@ -14,17 +16,10 @@ import { Usuario } from '../../../interfaces/usuario';
 
 export class UsuariosComponent implements OnInit {
 
-  listUsuarios: Usuario[] = [
-    {usuario: "AdriFC", nombre: 'Adrián', apellidos: 'Fraga Cortés', sexo: 'Masculino'},
-    {usuario: "DaniMO", nombre: 'Daniel', apellidos: 'Martiñán Otero', sexo: 'Masculino'},
-    {usuario: "AliciaVR", nombre: 'Alicia', apellidos: 'Vazquez Rodriguez', sexo: 'Femenino'},
-    {usuario: "MarcoAA", nombre: 'Marco', apellidos: 'Alonso Alonso', sexo: 'Masculino'},
-    {usuario: "MaríaBR", nombre: 'María', apellidos: 'Blanco Rodriguez', sexo: 'Femenino'},
-    
-  ];
+  listUsuarios: Usuario[] = [];
 
   displayedColumns: string[] = ['usuario', 'nombre', 'apellidos', 'sexo', 'acciones'];
-  dataSource = new MatTableDataSource(this.listUsuarios);
+  dataSource!: MatTableDataSource<any>;
   resultsLength:any;
   
 
@@ -32,9 +27,15 @@ export class UsuariosComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   
-  constructor() { }
+  constructor(private _usuarioService: UsuarioService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios(){
+    this.listUsuarios = this._usuarioService.getUsuario();
+    this.dataSource = new MatTableDataSource(this.listUsuarios);
   }
 
   ngAfterViewInit() {
@@ -45,6 +46,18 @@ export class UsuariosComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  eliminarUsuario(index: number){
+    console.log(index);
+    this._usuarioService.eliminarUsuario(index);
+    this.cargarUsuarios();
+
+    this._snackBar.open('Se ha eliminado el usuario', '', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    })
   }
 
 }
