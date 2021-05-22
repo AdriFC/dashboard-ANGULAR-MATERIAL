@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 //Módulos
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 //Angular Material
 import { MatSliderModule } from '@angular/material/slider';
@@ -12,6 +13,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+
+
 
 
 @NgModule({
@@ -26,7 +33,12 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatSliderModule,
@@ -37,7 +49,12 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class SharedModule { }
