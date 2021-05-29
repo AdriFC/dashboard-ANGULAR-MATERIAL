@@ -8,6 +8,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
+import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 
 
 
@@ -19,6 +20,7 @@ import { ReportesComponent } from './reportes/reportes.component';
     NavbarComponent,
     UsuariosComponent,
     ReportesComponent,
+    CrearUsuarioComponent,
     
     
   ],
